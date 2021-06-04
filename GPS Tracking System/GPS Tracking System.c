@@ -101,16 +101,26 @@ SysTick_Wait(800000); // wait 10ms
 
 //Lcd
 
-
-
 //lcd Data
-
-
-
+void LCD_Data(char data)
+{
+    GPIO_PORTA_DATA_R = 0x20; // 5alena rs b 1 w rw b 0 wel enable b 0
+    GPIO_PORTA_DATA_R |= 0x80; // 5let el enable elly hya bit 7 teb2a high (1)
+    GPIO_PORTB_DATA_R = data; // hya5od el data
+    Delay(3); 
+    GPIO_PORTA_DATA_R &= 0x1F;
+}
 
 
 //lcd command
-
+void LCD_Command(char com)
+{
+    GPIO_PORTA_DATA_R = 0x1F;// 34an a5li pin 5 w 6 w 7 elly hya rs w rw w e b zero
+    GPIO_PORTA_DATA_R |=0x80; // 5let el enable elly hya bit 7 teb2a high (1)
+    GPIO_PORTB_DATA_R = com; // hya5od el command
+    Delay(3);
+    GPIO_PORTA_DATA_R &= 0x1F; // rga3t el enable zero tani w3mlt equal 3latool 34an kda kda ba2i el bits kolha zeros
+}
 
 
 
