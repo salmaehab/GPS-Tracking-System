@@ -32,6 +32,7 @@ void init(void){
 	GPIO_PORTD_DIR_R = 0xA0;
 	GPIO_PORTD_DEN_R = 0xFF;
 	
+	
 	//port B
 	SYSCTL_RCGCGPIO_R |= 0x02;
 	delay =1 ;
@@ -50,6 +51,7 @@ void init(void){
 	SYSCTL_RCGCGPIO_R |= 0x01;
 	delay = 1;
 	
+	
 	GPIO_PORTA_LOCK_R = 0x4C4F434B;
 	GPIO_PORTA_CR_R = 0xFF;
 	GPIO_PORTA_AFSEL_R = 0x03;
@@ -67,9 +69,7 @@ void init(void){
 
 
 
-
-
-//systick timer
+//SYSTICK TIMER
 //systick timer
 
 void SysTick_Wait(uint32_t delay)
@@ -95,13 +95,9 @@ SysTick_Wait(800000); // wait 10ms
 
 
 
+//LCD
 
-
-
-
-//Lcd
-
-//lcd Data
+//LCD DATA
 void LCD_Data(char data)
 {
     GPIO_PORTA_DATA_R = 0x20; // 5alena rs b 1 w rw b 0 wel enable b 0
@@ -112,7 +108,7 @@ void LCD_Data(char data)
 }
 
 
-//lcd command
+//LCD Command
 void LCD_Command(char com)
 {
     GPIO_PORTA_DATA_R = 0x1F;// 34an a5li pin 5 w 6 w 7 elly hya rs w rw w e b zero
@@ -126,11 +122,14 @@ void LCD_Command(char com)
 
 
 
-//lcd init
+
+
+
+//LCD Initialization
 
 
 
 
 
-// main
+// main.c
 
