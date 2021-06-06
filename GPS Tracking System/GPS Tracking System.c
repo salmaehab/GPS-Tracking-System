@@ -198,9 +198,25 @@ int f;
 
 
 
-
-
-
-
 // main.c
 
+
+int main()
+{
+		Delay(5);
+		init();
+		Delay(5);
+		init_lcd();
+		Delay(3);
+		LCD_Command(0x01); 
+    Delay(2);
+		f = (int)distance(lat1, long1,lat2, long2); // distance
+		itoa(f); // convert into string
+		LCD_Data(str[0]);
+		LCD_Data(str[1]);
+		LCD_Data(str[2]);
+		check(f); // han check el distance weslet l 100 wla la2 wlw ah nnwar led
+}
+
+
+//End of main function
