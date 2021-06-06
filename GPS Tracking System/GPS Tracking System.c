@@ -126,6 +126,27 @@ void LCD_Command(char com)
 
 
 //LCD Initialization
+void init_lcd(void)
+{
+		LCD_Command(0x38); // 8 bits
+		Delay(2);
+		LCD_Command(0x0E); // display on, cursor blinking
+		Delay(2);
+		LCD_Command(0x01); // clear
+		Delay(2);
+		LCD_Command(0x06); // increment cursor
+		Delay(2);
+
+}
+//Send dummy data
+
+void check(int d)
+{
+	while(d>=100)
+	{
+		GPIO_PORTF_DATA_R = 0x02;
+	}
+}
 
 
 
