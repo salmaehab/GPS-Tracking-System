@@ -1,5 +1,10 @@
 #include "stdint.h"
-#include "C:\keil\tm4c123gh6pm.h"
+#include "stdio.h"
+#include "string.h"
+#include "stdlib.h"
+#include "math.h"
+#include "D:/Keil/Arm/INC/TI/tm4c123gh6pm.h"
+#define M_PI 3.14159265358979323846
 
 // Port init
 
@@ -63,12 +68,6 @@ void init(void){
 
 
 
-
-
-
-
-
-
 //SYSTICK TIMER
 //systick timer
 
@@ -90,7 +89,6 @@ for(i=0; i<delay; i++){
 SysTick_Wait(800000); // wait 10ms
 }
 }
-
 
 
 
@@ -120,11 +118,6 @@ void LCD_Command(char com)
 
 
 
-
-
-
-
-
 //LCD Initialization
 void init_lcd(void)
 {
@@ -148,6 +141,23 @@ void check(int d)
 	}
 }
 
+
+
+long double Radius;
+long double Difflong;
+long double result;
+long double lat1;
+long double lat2;
+long double long1;
+long double long2;
+long double Difflat ;
+
+// Utility function for converting degrees to radians
+long double toRadians(const long double degree)
+{
+	long double deg = ( M_PI) / 180;
+	return (deg * degree);
+}
 
 
 
