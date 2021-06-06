@@ -160,6 +160,23 @@ long double toRadians(const long double degree)
 }
 
 
+//distance 
+
+long double distance(long double lat1, long double long1,
+long double lat2, long double long2)
+{
+	lat1 = toRadians(lat1);
+	long1 = toRadians(long1);
+	lat2 = toRadians(lat2);
+	long2 = toRadians(long2);
+	Difflong = long2 - long1;
+	Difflat = lat2 - lat1;
+	result = pow(sin(Difflat / 2), 2) + cos(lat1) * cos(lat2) * pow(sin(Difflong / 2), 2);
+	result = 2 * asin(sqrt(result));
+	Radius = 6371;
+	result = result * Radius;
+	return result*1000;
+}
 
 
 // main.c
