@@ -133,20 +133,7 @@ void init_lcd(void)
 }
 
 
-//Convert int to string
-char str[3];
-void itoa(int a) 
-{
-	sprintf(str,"%d",a);
-}
-//Send dummy data
-//dummy variables to test distance function
-long double lat1 = 105.2;
-long double long1 = -12.03;
-long double lat2 = 53.1;
-long double long2 = -10.3;
-//variable to store distance as int
-int f; 
+//check if distance exceeds 100 -> turn on led
 
 void check(int d)
 {
@@ -192,6 +179,27 @@ long double lat2, long double long2)
 	result = result * Radius;
 	return result*1000;
 }
+
+
+//Convert int to string
+char str[3];
+void itoa(int a) 
+{
+	sprintf(str,"%d",a);
+}
+//Send dummy data
+//dummy variables to test distance function
+long double lat1 = 105.2;
+long double long1 = -12.03;
+long double lat2 = 53.1;
+long double long2 = -10.3;
+//variable to store distance as int
+int f; 
+
+
+
+
+
 
 
 // main.c
