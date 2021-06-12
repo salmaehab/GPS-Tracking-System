@@ -170,7 +170,11 @@ long double lat2, long double long2)
 	return result*1000;
 }
 
-
+// convert float to string
+void ftoa(float a) 
+{
+        sprintf(str_dist,"%f",a);
+}
 
 // main
 int main()
