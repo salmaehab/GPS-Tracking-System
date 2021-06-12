@@ -4,12 +4,14 @@
 #include "stdlib.h"
 #include "math.h"
 #include "D:/Keil/Arm/INC/TI/tm4c123gh6pm.h"
+#define GPIO_PA10_M 0x03
 #define M_PI 3.14159265358979323846
 
 // Port init
 
 void SystemInit() {}
-	uint32_t delay;
+uint32_t delay;
+int count = 0;
 void init(void){
 	//PORT F 
 	SYSCTL_RCGCGPIO_R |= 0x20;
@@ -133,18 +135,6 @@ void init_lcd(void)
 }
 
 
-//check if distance exceeds 100 -> turn on led
-
-void check(int d)
-{
-	while(d>=100)
-	{
-		GPIO_PORTF_DATA_R = 0x02;
-	}
-}
-
-
-
 long double Radius;
 long double Difflong;
 long double result;
@@ -181,41 +171,63 @@ long double lat2, long double long2)
 }
 
 
-//Convert int to string
-char str[3];
-void itoa(int a) 
-{
-	sprintf(str,"%d",a);
-}
-//Send dummy data
-//dummy variables to test distance function
-long double lat1 = 105.2;
-long double long1 = -12.03;
-long double lat2 = 53.1;
-long double long2 = -10.3;
-//variable to store distance as int
-int f; 
 
-
-
-// main.c
-
-
+// main
 int main()
 {
-		Delay(5);
-		init();
-		Delay(5);
-		init_lcd();
-		Delay(3);
-		LCD_Command(0x01); 
-    Delay(2);
-		f = (int)distance(lat1, long1,lat2, long2); // distance
-		itoa(f); // convert into string
-		LCD_Data(str[0]);
-		LCD_Data(str[1]);
-		LCD_Data(str[2]);
-		check(f); // han check el distance weslet l 100 wla la2 wlw ah nnwar led
+	while(1)
+	{
+	    flag = 1;
+	    in = UART2_Read();
+	    if(in == '$')
+	    {
+		  for(i =1; i < 6; i++)
+		    {       in = UART2_Read();
+			    if(in != sign[i])
+			    {
+				    flag = 0;
+				    break;
+			    }
+		    }
+		    if(flag == 1) //founded!!!
+		    {
+			    for(j = 0 ; j < 44 ; j++)
+			    {
+				    in = UART2_Read();
+				    coordinates[j]=in; // l7d my5zen elsatr kolo
+			    }// kda m3ana ba2i elsatr mn awel el comma
+			    count = 0;
+			    for(k = 1; k < 3; k++)
+			    {
+				    ilat[count]=coordinates[k];
+				    count++;
+			    }
+			    count = 0;
+			    for(k = 3; k < 11; k++)
+			    {
+				    flat[count] = coordinates[k];
+				    count ++;
+			    }
+			    count = 0;
+			    for(l= 14; l < 17 ; l++)
+			    {
+				    ilong[count] = coordinates[l];
+				    count++;
+			    }
+			    count = 0;
+			    for(l= 17; l <25; l++)
+			    {
+				    flong[count] = coordinates[l];
+				    count++;
+			    }
+			    ilat[2] = '\0';
+			    flat[8] ='\0';
+			    ilong[3] = '\0';
+			    flong[8] = '\0';
+		    } // end if
+	    }
+
+	} //end while
 }
 
 
