@@ -179,6 +179,15 @@ void ftoa(float a)
 // main
 int main()
 {
+	UART0_Init();
+        UART2_Init();
+        Delay(5);
+        init();
+        Delay(5);
+        init_lcd();
+        Delay(3);
+        LCD_Command(0x01);
+        Delay(2);
 	while(1)
 	{
 	    flag = 1;
@@ -228,6 +237,32 @@ int main()
 			    flat[8] ='\0';
 			    ilong[3] = '\0';
 			    flong[8] = '\0';
+			    
+			    
+			    
+			    longg= atof(ilong);
+                                    longi= atof(flong)/60; //float part of long atof
+                                    longg = longg + longi;
+                                    latt = atof(ilat);
+                                    lati = atof(flat)/60;
+                                    latt = latt + lati;
+                                    ///////////////
+                                    arr[m][0] = latt;
+                                    arr[m][1] = longg;
+                                    if(m != 0)
+                                    {
+                                        f = distance(arr[m][0],arr[m][1], arr[m-1][0], arr[m-1][1]);
+                                        dist += f;
+                                        if(dist >= 100)GPIO_PORTF_DATA_R = 0x02;
+                                    }
+                                    ftoa(dist);
+                                    Delay(50);
+                                    LCD_Command(0x01);
+                                    for(n = 0; n < 5; n++)
+                                    {
+                                        LCD_Data(str_dist[n]);
+                                    }
+                                    m++;
 		    } // end if
 	    }
 
