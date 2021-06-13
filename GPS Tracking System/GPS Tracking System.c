@@ -151,7 +151,10 @@ SysTick_Wait(800000); // wait 10ms
 
 
 
-//LCD
+
+
+
+
 
 //LCD DATA
 void LCD_Data(char data)
@@ -201,17 +204,16 @@ long double long2;
 long double Difflat ;
 
 // Utility function for converting degrees to radians
-long double toRadians(const long double degree)
+float toRadians(const float degree)
 {
-	long double deg = ( M_PI) / 180;
+	float deg = ( M_PI) / 180;
 	return (deg * degree);
 }
 
 
 //distance 
 
-long double distance(long double lat1, long double long1,
-long double lat2, long double long2)
+float distance(float lat1, float long1, float lat2, float long2)
 {
 	lat1 = toRadians(lat1);
 	long1 = toRadians(long1);
@@ -225,6 +227,32 @@ long double lat2, long double long2)
 	result = result * Radius;
 	return result*1000;
 }
+
+
+uint8_t in;
+int flag = 1;
+char gps[61];
+char sign[6] = {'$','G','P','G','L','L'};
+char coordinates[44];
+int i;
+int j;
+int k;
+int l;
+char ilong[4]; //int part of long
+char flong[9]; //float part of long
+char ilat[3];
+char flat[9];
+float latt = 1;
+float longg = 1;
+float longi = 1;
+float lati = 1;
+char str_dist[];
+int n;
+int m = 0;
+float f;
+float dist = 0;
+float arr[700][2];
+
 
 // convert float to string
 void ftoa(float a) 
