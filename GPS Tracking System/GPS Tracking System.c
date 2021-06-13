@@ -152,6 +152,18 @@ SysTick_Wait(800000); // wait 10ms
 
 
 
+//gps delay
+void gps_Wait()
+    {
+        NVIC_ST_CTRL_R = 0; /* (1) disable SysTick during setup */
+        NVIC_ST_RELOAD_R = 0x40FF; /* (2) number of counts to wait */
+        NVIC_ST_CURRENT_R = 0; /* (3) any value written to CURRENT clears */
+        NVIC_ST_CTRL_R |= 0x5; /* (4) enable SysTick with core clock */
+        while((NVIC_ST_CTRL_R&0x00010000)==0)
+        {
+                ; /* wait for COUNT flag */
+        }
+}
 
 
 
