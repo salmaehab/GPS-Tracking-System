@@ -3,7 +3,7 @@
 #include "string.h"
 #include "stdlib.h"
 #include "math.h"
-#include "D:/Keil/Arm/INC/TI/tm4c123gh6pm.h"
+#include "tm4c123gh6pm.h"
 #define GPIO_PA10_M 0x03
 #define M_PI 3.14159265358979323846
 
