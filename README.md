@@ -5,6 +5,7 @@
 - Contributors
 - Components Used
 - Technologies Used
+- Softwares Used
 
 ## Intoduction
 In this project a GPS tracking system will be developed using TM4C123G LaunchPad, the system should store the moved trajectory after power-on until a destination point is 
@@ -25,3 +26,6 @@ reached and calculate the taken distance.
 
 ## Technologies Used
 C Programming Language
+
+## Softwares Used
+Code Composer Studio (IDE)
